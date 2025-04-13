@@ -1,0 +1,68 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-binding
+subjects:
+- kind: User
+  name: admin-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: admin-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: client-developer-binding
+  namespace: client-services
+subjects:
+- kind: User
+  name: client-dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: client-developer
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: client-manager-binding
+  namespace: client-services
+subjects:
+- kind: User
+  name: client-manager-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: client-manager
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: bi-analytics-binding
+  namespace: bi-data
+subjects:
+- kind: User
+  name: bi-analyst-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: bi-analytics
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: tenant-developer-binding
+  namespace: tenant-services
+subjects:
+- kind: User
+  name: tenant-dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: tenant-developer
+  apiGroup: rbac.authorization.k8s.io
