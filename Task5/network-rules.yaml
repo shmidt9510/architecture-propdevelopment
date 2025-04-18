@@ -1,4 +1,4 @@
-# Политика изоляции всех подов - запрещает весь трафик по умолчанию
+# block all
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -9,7 +9,7 @@ spec:
   - Ingress
   - Egress
 ---
-# Разрешаем front-end общаться с back-end-api
+#  front-end -> allow back-end-api
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -26,7 +26,7 @@ spec:
         matchLabels:
           role: front-end
 ---
-# Разрешаем back-end-api отвечать front-end
+# back-end-api ->responce front-end
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -43,7 +43,7 @@ spec:
         matchLabels:
           role: back-end-api
 ---
-# Разрешаем admin-front-end общаться с admin-back-end-api
+# admin-front-end allow -> admin-back-end-api
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -60,7 +60,7 @@ spec:
         matchLabels:
           role: admin-front-end
 ---
-# Разрешаем admin-back-end-api отвечать admin-front-end
+# admin-back-end-api -> response admin-front-end
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
